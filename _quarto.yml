@@ -1,10 +1,10 @@
 project:
   type: book
-repo-url: https://github.com/hadley/r4ds/
+repo-url: https://github.com/nhs-r-community/r4ds-ed2-exercise-solutions
   repo-branch: main
   repo-actions: [edit, issue]
 book:
-  title: "r4ds-ed2-exercise-solutions"
+  title: "R for Data Science (2nd edition) Exercise Solutions"
   author: "NHS-R Community"
   date: "24/04/2023"
   chapters:
