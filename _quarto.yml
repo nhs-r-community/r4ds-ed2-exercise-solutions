@@ -1,6 +1,8 @@
 project:
   type: book
-
+repo-url: https://github.com/hadley/r4ds/
+  repo-branch: main
+  repo-actions: [edit, issue]
 book:
   title: "r4ds-ed2-exercise-solutions"
   author: "Jane Doe"
