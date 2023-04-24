@@ -5,8 +5,8 @@ repo-url: https://github.com/hadley/r4ds/
   repo-actions: [edit, issue]
 book:
   title: "r4ds-ed2-exercise-solutions"
-  author: "Jane Doe"
-  date: "31/03/2023"
+  author: "NHS-R Community"
+  date: "24/04/2023"
   chapters:
     - index.qmd
     - intro.qmd
