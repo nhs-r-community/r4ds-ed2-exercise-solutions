@@ -2,14 +2,23 @@ project:
   type: book
 
 book:
-  title: "r4ds-ed2-exercise-solutions"
-  author: "Jane Doe"
-  date: "31/03/2023"
+  title: "R for Data Science (2nd edition) Unofficial Exercise Solutions"
+  author: "NHS-R Community"
+  date: "24/04/2023"
   chapters:
     - index.qmd
     - intro.qmd
     - summary.qmd
     - references.qmd
+  page-footer:
+    left: |
+      R for Data Science (2e) https://r4ds.hadley.nz/
+    right: |
+      This unofficial book was built with <a href="https://quarto.org/">Quarto</a>.
+  repo-url: https://github.com/nhs-r-community/r4ds-ed2-exercise-solutions
+  repo-branch: main
+  repo-actions: [edit, issue]
+  site-url: https://nhs-r-community.github.io/r4ds-ed2-exercise-solutions/
 
 bibliography: references.bib
 
