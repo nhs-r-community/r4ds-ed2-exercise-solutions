@@ -8,7 +8,7 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
-    - summary.qmd
+    - data-visualize.qmd
     - references.qmd
   page-footer:
     left: |

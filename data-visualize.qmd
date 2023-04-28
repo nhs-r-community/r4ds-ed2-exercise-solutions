@@ -1,0 +1,12 @@
+# Data visualization
+
+[2.2.5](https://r4ds.hadley.nz/data-visualize.html#exercises)
+
+1.
+1.
+1.
+1.
+1.
+1.
+1.
+1.
