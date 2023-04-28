@@ -1,9 +1,5 @@
 project:
   type: book
-repo-url: https://github.com/nhs-r-community/r4ds-ed2-exercise-solutions
-repo-branch: main
-repo-actions: [edit, issue]
-site-url: https://nhs-r-community.github.io/r4ds-ed2-exercise-solutions/
 
 book:
   title: "R for Data Science (2nd edition) Unofficial Exercise Solutions"
@@ -19,6 +15,10 @@ book:
       R for Data Science (2e) https://r4ds.hadley.nz/
     right: |
       This unofficial book was built with <a href="https://quarto.org/">Quarto</a>.
+  repo-url: https://github.com/nhs-r-community/r4ds-ed2-exercise-solutions
+  repo-branch: main
+  repo-actions: [edit, issue]
+  site-url: https://nhs-r-community.github.io/r4ds-ed2-exercise-solutions/
 
 bibliography: references.bib
 
