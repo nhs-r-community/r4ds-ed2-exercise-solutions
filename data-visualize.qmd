@@ -9,6 +9,7 @@ The pipe is introduced in [Chapter 5](https://r4ds.hadley.nz/workflow-style.html
 > How many columns?
 
 ```{r}
+#| warning: false
 library(palmerpenguins)
 library(tidyverse)
 
