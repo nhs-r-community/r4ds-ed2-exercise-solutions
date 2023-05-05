@@ -1,34 +1,99 @@
 # Data visualization
 
-[2.2.5](https://r4ds.hadley.nz/data-visualize.html#exercises)
+The pipe is introduced in [Chapter 5](https://r4ds.hadley.nz/workflow-style.html#sec-pipes) but for these early chapter our solutions will include it! 
+
+## [2.2.5](https://r4ds.hadley.nz/data-visualize.html#exercises) {.unnumbered}
 
 1.
-How many rows are in `penguins`?  
-How many columns?
+> How many rows are in `penguins`?  
+> How many columns?
 
 ```{r}
 library(palmerpenguins)
 library(tidyverse)
 
-
 ```
 
+It's possible to see the number of rows and columns by typing:
+
+```{r}
+glimpse(penguins)
+```
+
+but to get a code output:
+
+```{r}
+nrow(penguins)
+ncol(penguins)
+```
+
+and to find the dimensions of an object (the columns and rows):
+
+```{r}
+dim(penguins)
+```
 
 2.
-What does the `bill_depth_mm` variable in the `penguins` data frame describe?
+> What does the `bill_depth_mm` variable in the `penguins` data frame describe?
 Read the help for `?penguins` to find out.
 
+There is a nice description and picture on [Allison Horst's](https://github.com/allisonhorst/palmerpenguins#bill-dimensions) GitHub.
+
 3.
-Make a scatterplot of `bill_depth_mm` vs. `bill_length_mm`.
+>Make a scatterplot of `bill_depth_mm` vs. `bill_length_mm`.
 That is, make a scatterplot with `bill_depth_mm` on the y-axis and `bill_length_mm` on the x-axis.
 Describe the relationship between these two variables.
 
+Because this pipes the data into the chart the parameter `data = penguins` is redundant. It is commented out just to show where it would be if it hadn't been piped. By piping the data into the plotting code it means that if you type x = then tab you get a list of the potential columns you can use in the code.
+
+```{r}
+penguins |> 
+  ggplot(#data = penguins, 
+    mapping = aes(x = bill_depth_mm,
+                  y = bill_length_mm)) +
+  geom_point()
+```
+
+
 4.
-What happens if you make a scatterplot of `species` vs. `bill_depth_mm`?
-What might be a better choice of geom?
+>What happens if you make a scatterplot of `species` vs. `bill_depth_mm`?
+
+When deciding which data is plotted on the y the [suggestion](https://sciencing.com/proper-way-label-graph-5195234.html) is often to put the first on the y. The following could be either way but it does make it easier to read the species names if they are on the y axis.
+
+```{r}
+penguins |> 
+  ggplot(#data = penguins,
+    mapping = aes(x = bill_depth_mm,
+                  y = species)) +
+  geom_point()
+```
+
+>What might be a better choice of geom?
+
+Density plots with a coloured line, this could be replaced with `fill = species` to move from the line to a more solid chart.
+
+_linewidth isn't mentioned in the R4DS and in some code may be lwd or size (although that is deprecated)_
+
+```{r}
+penguins |> 
+  ggplot(#data = penguins,
+         mapping = aes(x = bill_depth_mm,
+                       colour = species)) +
+  geom_density(linewidth = 2)
+```
+
+Or a boxplot:
+
+```{r}
+penguins |> 
+  ggplot(#data = penguins,
+    mapping = aes(x = bill_depth_mm,
+                  fill = species)) +
+  geom_boxplot()
+```
 
 5.
-Why does the following give an error and how would you fix it?
+>Why does the following give an error and how would you fix it?
 
 ```{r}
 #| eval: false
@@ -36,27 +101,47 @@ ggplot(data = penguins) +
 geom_point()
 ```
 
+Gives the following error:
+
+```r
+Error in `geom_point()`:
+! Problem while setting up geom.
+ℹ Error occurred in the 1st layer.
+Caused by error in `compute_geom_1()`:
+! `geom_point()` requires the following missing
+  aesthetics: x and y
+Run `rlang::last_trace()` to see where the error occurred.
+```
+The error is pointing out there are no aesthetics added, including x and y axis information.
+
+```{r}
+penguins |> 
+  ggplot(mapping = aes(x = bill_depth_mm,
+                       y = body_mass_g)) + 
+  geom_point()
+```
+
 6.
-What does the `na.rm` argument do in `geom_point()`?
-What is the default value of the argument?
+>What does the `na.rm` argument do in `geom_point()`?
+>What is the default value of the argument?
 Create a scatterplot where you successfully use this argument set to `TRUE`.
 
 7.
-Add the following caption to the plot you made in the previous exercise: "Data come from the palmerpenguins package." Hint: Take a look at the documentation for `labs()`.
+>Add the following caption to the plot you made in the previous exercise: "Data come from the palmerpenguins package." Hint: Take a look at the documentation for `labs()`.
 
 8.
-Recreate the following visualization.
+>Recreate the following visualization.
 What aesthetic should `bill_depth_mm` be mapped to?
 And should it be mapped at the global level or at the geom level?
 
-[2.4.3](https://r4ds.hadley.nz/data-visualize.html#exercises-1)
+## [2.4.3](https://r4ds.hadley.nz/data-visualize.html#exercises-1) {.unnumbered}
 
 1.  
-Make a bar plot of `species` of `penguins`, where you assign `species` to the `y` aesthetic.
+>Make a bar plot of `species` of `penguins`, where you assign `species` to the `y` aesthetic.
 How is this plot different?
 
 2.  
-How are the following two plots different?
+>How are the following two plots different?
 Which aesthetic, `color` or `fill`, is more useful for changing the color of bars?
 
 ```{r}
@@ -70,9 +155,9 @@ ggplot(penguins, aes(x = species)) +
 ```
 
 3.  
-What does the `bins` argument in `geom_histogram()` do?
+>What does the `bins` argument in `geom_histogram()` do?
 
 4.  
-Make a histogram of the `carat` variable in the `diamonds` dataset that is available when you load the tidyverse package.
+>Make a histogram of the `carat` variable in the `diamonds` dataset that is available when you load the tidyverse package.
 Experiment with different binwidths.
 What binwidth reveals the most interesting patterns?
