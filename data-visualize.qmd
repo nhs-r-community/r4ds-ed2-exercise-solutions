@@ -127,19 +127,122 @@ penguins |>
 >What is the default value of the argument?
 Create a scatterplot where you successfully use this argument set to `TRUE`.
 
+There are missing data points (either on the x or the y) so gives a warning in the console along with the plotted chart:
+
+>Warning message:
+Removed 2 rows containing missing values (`geom_point()`).
+
+It is saying that the missing value data is dropped.
+
+Adding `na.rm = TRUE` into the `geom_point()` removes these missing value data poins and so there is no longer a warning printed in the console.
+
+The default value of `na.rm =` is `FALSE`.
+
+```{r}
+penguins |> 
+  ggplot(mapping = aes(x = bill_depth_mm,
+                       y = body_mass_g)) + 
+  geom_point(na.rm = TRUE)
+```
+
 7.
 >Add the following caption to the plot you made in the previous exercise: "Data come from the palmerpenguins package." Hint: Take a look at the documentation for `labs()`.
+
+```{r}
+penguins |> 
+  ggplot(mapping = aes(x = bill_depth_mm,
+                       y = body_mass_g)) + 
+  geom_point(na.rm = TRUE) + 
+  labs(caption = "Data come from the palmerpenguins package.")
+```
 
 8.
 >Recreate the following visualization.
 What aesthetic should `bill_depth_mm` be mapped to?
 And should it be mapped at the global level or at the geom level?
 
+Mapped to the geom_level:
+
+```{r}
+penguins |> 
+  ggplot(mapping = aes(x = flipper_length_mm,
+                       y = body_mass_g)) + 
+  geom_point(aes(colour = bill_depth_mm),
+             na.rm = TRUE) +
+  geom_smooth(na.rm = TRUE)
+
+```
+
+But mapping to the global level gives a warning as the colour is also being applied to the `geom_smooth`and subsequently gets dropped:
+
+```{r}
+penguins |> 
+  ggplot(mapping = aes(x = flipper_length_mm,
+                       y = body_mass_g,
+                       colour = bill_depth_mm)) + 
+  geom_point(na.rm = TRUE) +
+  geom_smooth(na.rm = TRUE)
+
+```
+
+9.
+Run this code in your head and predict what the output will look like. 
+Then, run the code in R and check your predictions.
+
+The chart will have dots with flipper length along the bottom and body mass along the side. 
+The dots will be coloured by the islands and there will be as many curvy lines as there are distinct islands but with no grey extensions/bits to the lines.
+
+```{r}
+ggplot(
+  data = penguins,
+  mapping = aes(x = flipper_length_mm, y = body_mass_g, color = island)
+) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+```
+
+
+10. 
+Will these two graphs look different? Why/why not?
+
+They are the same because the first has the data and `aes()` which will be available to the `geom()` functions. 
+The second is a repetition of the code leaving the global `ggplot()` empty but giving the same chart.
+
+```{r}
+ggplot(
+  data = penguins,
+  mapping = aes(x = flipper_length_mm, y = body_mass_g)
+) +
+  geom_point() +
+  geom_smooth()
+
+ggplot() +
+  geom_point(
+    data = penguins,
+    mapping = aes(x = flipper_length_mm, y = body_mass_g)
+  ) +
+  geom_smooth(
+    data = penguins,
+    mapping = aes(x = flipper_length_mm, y = body_mass_g)
+  )
+```
+
+
 ## [2.4.3](https://r4ds.hadley.nz/data-visualize.html#exercises-1) {.unnumbered}
 
 1.  
 >Make a bar plot of `species` of `penguins`, where you assign `species` to the `y` aesthetic.
 How is this plot different?
+
+The plot appears to be 'flipped' so the species are appearing on the left side (y axis).
+
+```{r}
+ggplot(data = penguins,
+       aes(y = species))+
+  geom_bar()
+```
+
+This used to be done previously using `coord_flip()` which is still in {ggplot2}.
 
 2.  
 >How are the following two plots different?
