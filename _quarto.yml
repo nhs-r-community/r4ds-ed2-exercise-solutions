@@ -12,7 +12,7 @@ book:
     - references.qmd
   page-footer:
     left: |
-      R for Data Science (2e) https://r4ds.hadley.nz/
+      Based on the content from R for Data Science (2e) https://r4ds.hadley.nz/
     right: |
       This unofficial book was built with <a href="https://quarto.org/">Quarto</a>.
   repo-url: https://github.com/nhs-r-community/r4ds-ed2-exercise-solutions

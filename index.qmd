@@ -1,20 +1,27 @@
 # About this book
 
-This unofficial book is inspired by the [R for Data Science Exercise Solutions](https://jrnold.github.io/r4ds-exercise-solutions/) and is an updated version in line with the second edition release of [R for Data Science](https://r4ds.hadley.nz/) also referred to in the short form as R4DS.
+This unofficial book is inspired by the [R for Data Science Exercise Solutions](https://jrnold.github.io/r4ds-exercise-solutions/) and is an updated version in line with the second edition release of [R for Data Science](https://r4ds.hadley.nz/), also referred to in the short form as R4DS, by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 Like the two books mentioned, this is divided into the same sections with the same numbering for exercises. 
 Sections without exercises will appear but with the callout block:
-
 
 ::: {.callout-note}
 There are no exercises in this section.
 :::
 
-To attempt to make this book closely referenced to the original there will be hyperlinks for the chapter numbers and these may break if the book changes.
-There are no links or corresponding scripts to the the part sections of the R4DS book.
+To attempt to make this book closely referenced to the original there will be hyperlinks for the R4DS (2e) chapter numbers and these may break if the book changes.
+
+All questions from the R4DS book will be quoted:
+
+> Like this
 
 ## GitHub/Quarto scripts
 
 The book is built using the code names that follow the R4DS names which are listed in the corresponding [`_quarto.yml`](https://github.com/hadley/r4ds/blob/main/_quarto.yml).
 
+## Formatting
+
 This book follows the [NHS-R Way](https://nhs-r-community.github.io/NHSR-way/community-handbook.html) code book style with each sentence having a new line following _The Turing Way_.
+This will only apply, however, to new content and does not extend to the quoted text from R4DS (2e).
+
+Quoted text will be exact and so may be in US spelling, whereas new content is likely to be UK English spelling, for example: `summarise()` instead of `summarize`.
