@@ -45,7 +45,9 @@ There is a nice description and picture on [Allison Horst's](https://github.com/
 That is, make a scatterplot with `bill_depth_mm` on the y-axis and `bill_length_mm` on the x-axis.
 Describe the relationship between these two variables.
 
-Because this pipes the data into the chart the parameter `data = penguins` is redundant. It is commented out just to show where it would be if it hadn't been piped. By piping the data into the plotting code it means that if you type x = then tab you get a list of the potential columns you can use in the code.
+Because this pipes the data into the chart the parameter `data = penguins` is redundant. 
+It is commented out just to show where it would be if it hadn't been piped. 
+By piping the data into the plotting code it means that if you type x = then tab you get a list of the potential columns you can use in the code.
 
 ```{r}
 penguins |> 
@@ -59,7 +61,8 @@ penguins |>
 4.
 >What happens if you make a scatterplot of `species` vs. `bill_depth_mm`?
 
-When deciding which data is plotted on the y the [suggestion](https://sciencing.com/proper-way-label-graph-5195234.html) is often to put the first on the y. The following could be either way but it does make it easier to read the species names if they are on the y axis.
+When deciding which data is plotted on the y the [suggestion](https://sciencing.com/proper-way-label-graph-5195234.html) is often to put the first on the y. 
+The following could be either way but it does make it easier to read the species names if they are on the y axis.
 
 ```{r}
 penguins |> 
