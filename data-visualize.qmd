@@ -264,7 +264,42 @@ ggplot(penguins, aes(x = species)) +
 3.  
 >What does the `bins` argument in `geom_histogram()` do?
 
+```{r}
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram()
+```
+
+Bins represents the number of "buckets" that data is cut into, automatically this is 30.
+
+To remove the warning message:
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(bins = 10,
+                 na.rm = TRUE)
+```
+
 4.  
 >Make a histogram of the `carat` variable in the `diamonds` dataset that is available when you load the tidyverse package.
 Experiment with different binwidths.
 What binwidth reveals the most interesting patterns?
+
+
+```{r}
+ggplot(diamonds, aes(x = carat)) +
+  geom_histogram()
+```
+
+Bins changes the "buckets" or the number of cuts made to the data:
+
+```{r}
+ggplot(diamonds, aes(x = carat)) +
+  geom_histogram(bins = 3)
+```
+
+Whilst binwidth changes the size of the bin, cuts or "buckets":
+
+```{r}
+ggplot(diamonds, aes(x = carat)) +
+  geom_histogram(binwidth = 0.5)
+```
