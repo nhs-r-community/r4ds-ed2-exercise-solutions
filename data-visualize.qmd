@@ -376,3 +376,8 @@ ggsave("mpg-plot.png")
 2.
 >What do you need to change in the code above to save the plot as a PDF instead of a PNG? 
 How could you find out what types of image files would work in `ggsave()`?
+
+
+## [2.6.1](https://r4ds.hadley.nz/data-visualize.html#exercises-3) {.unnumbered}
+
+1.
