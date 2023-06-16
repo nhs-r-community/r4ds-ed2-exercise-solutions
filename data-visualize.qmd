@@ -149,7 +149,8 @@ penguins |>
 ```
 
 7.
->Add the following caption to the plot you made in the previous exercise: "Data come from the palmerpenguins package." Hint: Take a look at the documentation for `labs()`.
+>Add the following caption to the plot you made in the previous exercise: "Data come from the palmerpenguins package." 
+Hint: Take a look at the documentation for `labs()`.
 
 ```{r}
 penguins |> 
@@ -303,3 +304,75 @@ Whilst binwidth changes the size of the bin, cuts or "buckets":
 ggplot(diamonds, aes(x = carat)) +
   geom_histogram(binwidth = 0.5)
 ```
+
+
+## [2.5.5](https://r4ds.hadley.nz/data-visualize.html#exercises-2) {.unnumbered}
+
+1.  
+> The `mpg` data frame that is bundled with the ggplot2 package contains 234 observations collected by the US Environmental Protection Agency on 38 car models. 
+Which variables in mpg are categorical? 
+Which variables are numerical? 
+(Hint: Type `?mpg` to read the documentation for the dataset.) 
+How can you see this information when you run `mpg`?
+
+2.
+> Make a scatterplot of `hwy` vs. `displ` using the mpg data frame. Next, map a third, numerical variable to `color`, then `size`, then both `color` and `size`, then `shape.` 
+How do these aesthetics behave differently for categorical vs. numerical variables?
+
+3.
+> In the scatterplot of `hwy` vs. `displ`, what happens if you map a third variable to linewidth?
+
+4.
+> What happens if you map the same variable to multiple aesthetics?
+
+5.
+> Make a scatterplot of `bill_depth_mm` vs. `bill_length_mm` and color the points by species. 
+What does adding coloring by `species` reveal about the relationship between these two variables? 
+What about faceting by `species`?
+
+6.
+> Why does the following yield two separate legends? 
+How would you fix it to combine the two legends?
+
+```{r}
+ggplot(
+  data = penguins,
+  mapping = aes(
+    x = bill_length_mm, y = bill_depth_mm, 
+    color = species, shape = species
+  )
+) +
+  geom_point() +
+  labs(color = "Species")
+
+```
+
+7.
+> Create the two following stacked bar plots. 
+Which question can you answer with the first one? 
+Which question can you answer with the second one?
+
+```{r}
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "fill")
+ggplot(penguins, aes(x = species, fill = island)) +
+  geom_bar(position = "fill")
+```
+
+## [2.6.1](https://r4ds.hadley.nz/data-visualize.html#exercises-3) {.unnumbered}
+
+1.
+> Run the following lines of code. Which of the two plots is saved as `mpg-plot.png`? 
+Why?
+
+```{r}
+ggplot(mpg, aes(x = class)) +
+  geom_bar()
+ggplot(mpg, aes(x = cty, y = hwy)) +
+  geom_point()
+ggsave("mpg-plot.png")
+```
+
+2.
+>What do you need to change in the code above to save the plot as a PDF instead of a PNG? 
+How could you find out what types of image files would work in `ggsave()`?
