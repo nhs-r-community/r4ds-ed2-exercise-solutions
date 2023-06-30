@@ -40,5 +40,26 @@
     "title": "3  Data visualization",
     "section": "2.4.3",
     "text": "2.4.3\n\n\nMake a bar plot of species of penguins, where you assign species to the y aesthetic. How is this plot different?\n\n\nThe plot appears to be ‘flipped’ so the species are appearing on the left side (y axis).\n\nggplot(data = penguins,\n       aes(y = species))+\n  geom_bar()\n\n\n\n\nThis used to be done previously using coord_flip() which is still in {ggplot2}.\n\n\nHow are the following two plots different? Which aesthetic, color or fill, is more useful for changing the color of bars?\n\n\n\nggplot(penguins, aes(x = species)) +\n  geom_bar(color = \"red\")\n\nggplot(penguins, aes(x = species)) +\n  geom_bar(fill = \"red\")\n\n\n\nWhat does the bins argument in geom_histogram() do?\n\n\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 2 rows containing non-finite values (`stat_bin()`).\n\n\n\n\n\nBins represents the number of “buckets” that data is cut into, automatically this is 30.\nTo remove the warning message:\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(bins = 10,\n                 na.rm = TRUE)\n\n\n\n\n\n\nMake a histogram of the carat variable in the diamonds dataset that is available when you load the tidyverse package. Experiment with different binwidths. What binwidth reveals the most interesting patterns?\n\n\n\nggplot(diamonds, aes(x = carat)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\nBins changes the “buckets” or the number of cuts made to the data:\n\nggplot(diamonds, aes(x = carat)) +\n  geom_histogram(bins = 3)\n\n\n\n\nWhilst binwidth changes the size of the bin, cuts or “buckets”:\n\nggplot(diamonds, aes(x = carat)) +\n  geom_histogram(binwidth = 0.5)"
+  },
+  {
+    "objectID": "data-visualize.html#section-2",
+    "href": "data-visualize.html#section-2",
+    "title": "3  Data visualization",
+    "section": "2.5.5",
+    "text": "2.5.5\n\n\nThe mpg data frame that is bundled with the ggplot2 package contains 234 observations collected by the US Environmental Protection Agency on 38 car models. Which variables in mpg are categorical? Which variables are numerical? (Hint: Type ?mpg to read the documentation for the dataset.) How can you see this information when you run mpg?\n\n\nMake a scatterplot of hwy vs. displ using the mpg data frame. Next, map a third, numerical variable to color, then size, then both color and size, then shape. How do these aesthetics behave differently for categorical vs. numerical variables?\n\n\nIn the scatterplot of hwy vs. displ, what happens if you map a third variable to linewidth?\n\n\nWhat happens if you map the same variable to multiple aesthetics?\n\n\nMake a scatterplot of bill_depth_mm vs. bill_length_mm and color the points by species. What does adding coloring by species reveal about the relationship between these two variables? What about faceting by species?\n\n\nWhy does the following yield two separate legends? How would you fix it to combine the two legends?\n\n\n\nggplot(\n  data = penguins,\n  mapping = aes(\n    x = bill_length_mm, y = bill_depth_mm, \n    color = species, shape = species\n  )\n) +\n  geom_point() +\n  labs(color = \"Species\")\n\nWarning: Removed 2 rows containing missing values (`geom_point()`).\n\n\n\n\n\n\n\nCreate the two following stacked bar plots. Which question can you answer with the first one? Which question can you answer with the second one?\n\n\n\nggplot(penguins, aes(x = island, fill = species)) +\n  geom_bar(position = \"fill\")\n\n\n\nggplot(penguins, aes(x = species, fill = island)) +\n  geom_bar(position = \"fill\")"
+  },
+  {
+    "objectID": "data-visualize.html#section-3",
+    "href": "data-visualize.html#section-3",
+    "title": "3  Data visualization",
+    "section": "2.6.1",
+    "text": "2.6.1\n\n\nRun the following lines of code. Which of the two plots is saved as mpg-plot.png? Why?\n\n\n\nggplot(mpg, aes(x = class)) +\n  geom_bar()\n\n\n\nggplot(mpg, aes(x = cty, y = hwy)) +\n  geom_point()\n\n\n\nggsave(\"mpg-plot.png\")\n\nSaving 7 x 5 in image\n\n\n\n\nWhat do you need to change in the code above to save the plot as a PDF instead of a PNG? How could you find out what types of image files would work in ggsave()?"
+  },
+  {
+    "objectID": "data-visualize.html#section-4",
+    "href": "data-visualize.html#section-4",
+    "title": "3  Data visualization",
+    "section": "2.6.1",
+    "text": "2.6.1"
   }
 ]

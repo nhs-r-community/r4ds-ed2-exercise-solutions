@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -125,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="./">R for Data Science (2nd edition) Unofficial Exercise Solutions</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/nhs-r-community/r4ds-ed2-exercise-solutions" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/nhs-r-community/r4ds-ed2-exercise-solutions" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -172,6 +172,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">2.2.5</a></li>
   <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">2.4.3</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">2.5.5</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">2.6.1</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">2.6.1</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/nhs-r-community/r4ds-ed2-exercise-solutions/edit/main/data-visualize.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nhs-r-community/r4ds-ed2-exercise-solutions/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -582,6 +585,98 @@ Removed 2 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="data-visualize_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="section-2" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="section-2"><a href="https://r4ds.hadley.nz/data-visualize.html#exercises-2">2.5.5</a></h2>
+<ol type="1">
+<li><blockquote class="blockquote">
+<p>The <code>mpg</code> data frame that is bundled with the ggplot2 package contains 234 observations collected by the US Environmental Protection Agency on 38 car models. Which variables in mpg are categorical? Which variables are numerical? (Hint: Type <code>?mpg</code> to read the documentation for the dataset.) How can you see this information when you run <code>mpg</code>?</p>
+</blockquote></li>
+<li><blockquote class="blockquote">
+<p>Make a scatterplot of <code>hwy</code> vs.&nbsp;<code>displ</code> using the mpg data frame. Next, map a third, numerical variable to <code>color</code>, then <code>size</code>, then both <code>color</code> and <code>size</code>, then <code>shape.</code> How do these aesthetics behave differently for categorical vs.&nbsp;numerical variables?</p>
+</blockquote></li>
+<li><blockquote class="blockquote">
+<p>In the scatterplot of <code>hwy</code> vs.&nbsp;<code>displ</code>, what happens if you map a third variable to linewidth?</p>
+</blockquote></li>
+<li><blockquote class="blockquote">
+<p>What happens if you map the same variable to multiple aesthetics?</p>
+</blockquote></li>
+<li><blockquote class="blockquote">
+<p>Make a scatterplot of <code>bill_depth_mm</code> vs.&nbsp;<code>bill_length_mm</code> and color the points by species. What does adding coloring by <code>species</code> reveal about the relationship between these two variables? What about faceting by <code>species</code>?</p>
+</blockquote></li>
+<li><blockquote class="blockquote">
+<p>Why does the following yield two separate legends? How would you fix it to combine the two legends?</p>
+</blockquote></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> penguins,</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, </span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> species, <span class="at">shape =</span> species</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="data-visualize_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="7" type="1">
+<li><blockquote class="blockquote">
+<p>Create the two following stacked bar plots. Which question can you answer with the first one? Which question can you answer with the second one?</p>
+</blockquote></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="data-visualize_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">fill =</span> island)) <span class="sc">+</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="data-visualize_files/figure-html/unnamed-chunk-25-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="section-3" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="section-3"><a href="https://r4ds.hadley.nz/data-visualize.html#exercises-3">2.6.1</a></h2>
+<ol type="1">
+<li><blockquote class="blockquote">
+<p>Run the following lines of code. Which of the two plots is saved as <code>mpg-plot.png</code>? Why?</p>
+</blockquote></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> class)) <span class="sc">+</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="data-visualize_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="data-visualize_files/figure-html/unnamed-chunk-26-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"mpg-plot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Saving 7 x 5 in image</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li><blockquote class="blockquote">
+<p>What do you need to change in the code above to save the plot as a PDF instead of a PNG? How could you find out what types of image files would work in <code>ggsave()</code>?</p>
+</blockquote></li>
+</ol>
+</section>
+<section id="section-4" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="section-4"><a href="https://r4ds.hadley.nz/data-visualize.html#exercises-3">2.6.1</a></h2>
+<ol type="1">
+<li></li>
+</ol>
 
 
 </section>
