@@ -311,9 +311,21 @@ ggplot(diamonds, aes(x = carat)) +
 1.  
 > The `mpg` data frame that is bundled with the ggplot2 package contains 234 observations collected by the US Environmental Protection Agency on 38 car models. 
 Which variables in mpg are categorical? 
-Which variables are numerical? 
+
+To see the data types you could use `summary()` or `str()` for structure:
+
+```{r}
+str(ggplot2::mpg)
+```
+
+Categorical would be chr or character type so that would be manufacture, model, trans, drv, fl and class.
+
+
+> Which variables are numerical? 
 (Hint: Type `?mpg` to read the documentation for the dataset.) 
 How can you see this information when you run `mpg`?
+
+Numerical is listed as int for integer or num for number and that would be displ, year, cyl, cty and hwy.
 
 2.
 > Make a scatterplot of `hwy` vs. `displ` using the mpg data frame. Next, map a third, numerical variable to `color`, then `size`, then both `color` and `size`, then `shape.` 
