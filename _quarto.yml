@@ -9,6 +9,7 @@ book:
     - index.qmd
     - intro.qmd
     - data-visualize.qmd
+    - workflow.qmd
     - references.qmd
   page-footer:
     left: |
