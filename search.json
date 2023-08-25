@@ -56,17 +56,10 @@
     "text": "2.6.1\n\n\nRun the following lines of code. Which of the two plots is saved as mpg-plot.png? Why?\n\n\n\nggplot(mpg, aes(x = class)) +\n  geom_bar()\nggplot(mpg, aes(x = cty, y = hwy)) +\n  geom_point()\nggsave(\"mpg-plot.png\")\n\nThe second code is saved because it was the last code run.\n\n\nWhat do you need to change in the code above to save the plot as a PDF instead of a PNG? How could you find out what types of image files would work in ggsave()?\n\n\nTo save as a pdf the code needs to be changed from .png to .pdf:\n\nggsave(\"mpg-plot.pdf\")"
   },
   {
-    "objectID": "data-visualize.html#section-4",
-    "href": "data-visualize.html#section-4",
-    "title": "2  Data visualization",
-    "section": "2.7",
-    "text": "2.7\n\n\n\n\n\n\nNote\n\n\n\nThere are no exercises in this section."
-  },
-  {
-    "objectID": "data-visualize.html#section-5",
-    "href": "data-visualize.html#section-5",
-    "title": "2  Data visualization",
-    "section": "2.1 2.8",
-    "text": "2.1 2.8\n\n\n\n\n\n\nNote\n\n\n\nThere are no exercises in this section."
+    "objectID": "workflow.html#section",
+    "href": "workflow.html#section",
+    "title": "3  Workflow: basics",
+    "section": "3.5",
+    "text": "3.5\n\n\nWhy does this code not work?\n\n\n\nmy_variable &lt;- 10\nmy_varıable\n\nError in eval(expr, envir, enclos): object 'my_varıable' not found\n\n\nThe i is dotless in the call of my_variable and so doesn’t match.\n\n\n\n\n\n\nQuarto chunk error: true\n\n\n\n\n\nIn Quarto this chunk ran using error: true which shows the error in the book, useful for instances where code errors are shared in Quarto presentations or on websites!\n\n\n\n\n\nTweak each of the following R commands so that they run correctly:\n\n\n\nlibary(todyverse)\n\nggplot(dTA = mpg) + \n  geom_point(maping = aes(x = displ y = hwy)) +\n  geom_smooth(method = \"lm)\n\nCorrected:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nggplot(data = mpg) + \n  geom_point(mapping = aes(x = displ, y = hwy)) +\n  geom_smooth(mapping = aes(x = displ, y = hwy),\n              method = lm)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\nThere are a lot of corrections needed in this code. It includes:\n\ntodyverse should be tidyverse)\ndTA instead of data)\nmaping instead of mapping\nmissing , between x = displ and y = hwy\na \" before \"lm\n\n\n\n\n\n\n\nQuotations around the lm in method = (note)\n\n\n\n\n\n\"lm\" will work but RStudio will flash up an error in the margin saying unexpected token if you click on the red circle with white cross.\n\n\n\n\ngeom_smooth() also requires its own mapping information as the aes() isn’t available to that line. If this were global it would be:\n\n\nlibrary(tidyverse)\n\nggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + \n  geom_point() +\n  geom_smooth(method = lm)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\nPress Option + Shift + K / Alt + Shift + K. What happens?\n\n\nThe keyboard shortcuts overlay menu comes up in RStudio.\n\nHow can you get to the same place using the menus?\n\nTools/Keyboards Shortcuts Help\n\n\nLet’s revisit an exercise from the https://r4ds.hadley.nz/data-visualize#sec-ggsave. Run the following lines of code.\n\n\n\nmy_bar_plot &lt;- ggplot(mpg, aes(x = class)) +\n geom_bar()\nmy_scatter_plot &lt;- ggplot(mpg, aes(x = cty, y = hwy)) +\n geom_point()\nggsave(filename = \"mpg-plot.png\", plot = my_bar_plot)\n\n\nWhich of the two plots is saved as mpg-plot.png?\n\nThe bar plot from the object my_bar_plot is saved.\n\nWhy?\n\nThis has been explicitly detailed in the ggsave() function. Both plots are also saved as objects (https://r4ds.hadley.nz/workflow-basics#sec-whats-in-a-name) so they can be referred to in the function."
   }
 ]
