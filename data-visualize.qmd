@@ -231,7 +231,6 @@ ggplot() +
   )
 ```
 
-
 ## [2.4.3](https://r4ds.hadley.nz/data-visualize.html#exercises-1) {.unnumbered}
 
 1.  
@@ -398,16 +397,3 @@ To save as a pdf the code needs to be changed from `.png` to `.pdf`:
 #| eval: false
 ggsave("mpg-plot.pdf")
 ```
-
-## [2.7](https://r4ds.hadley.nz/data-visualize#common-problems) {.unnumbered}
-
-::: {.callout-note}
-There are no exercises in this section.
-:::
-
-## [2.8](https://r4ds.hadley.nz/data-visualize#summary)
-
-::: {.callout-note}
-There are no exercises in this section.
-:::
-
