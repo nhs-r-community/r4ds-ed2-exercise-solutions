@@ -1,4 +1,4 @@
-# About this book
+# About this book {.unnumbered}
 
 This unofficial book is inspired by the [R for Data Science Exercise Solutions](https://jrnold.github.io/r4ds-exercise-solutions/) and is an updated version in line with the second edition release of [R for Data Science](https://r4ds.hadley.nz/), also referred to in the short form as R4DS, by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 

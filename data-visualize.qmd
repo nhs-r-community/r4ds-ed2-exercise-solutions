@@ -378,6 +378,7 @@ ggplot(penguins, aes(x = species, fill = island)) +
 Why?
 
 ```{r}
+#| eval: false
 ggplot(mpg, aes(x = class)) +
   geom_bar()
 ggplot(mpg, aes(x = cty, y = hwy)) +
@@ -385,11 +386,28 @@ ggplot(mpg, aes(x = cty, y = hwy)) +
 ggsave("mpg-plot.png")
 ```
 
+The second code is saved because it was the last code run.
+
 2.
->What do you need to change in the code above to save the plot as a PDF instead of a PNG? 
+> What do you need to change in the code above to save the plot as a PDF instead of a PNG? 
 How could you find out what types of image files would work in `ggsave()`?
 
+To save as a pdf the code needs to be changed from `.png` to `.pdf`:
 
-## [2.6.1](https://r4ds.hadley.nz/data-visualize.html#exercises-3) {.unnumbered}
+```{r}
+#| eval: false
+ggsave("mpg-plot.pdf")
+```
 
-1.
+## [2.7](https://r4ds.hadley.nz/data-visualize#common-problems) {.unnumbered}
+
+::: {.callout-note}
+There are no exercises in this section.
+:::
+
+## [2.8](https://r4ds.hadley.nz/data-visualize#summary)
+
+::: {.callout-note}
+There are no exercises in this section.
+:::
+
