@@ -1,0 +1,104 @@
+# Workflow: basics
+
+## [3.5](https://r4ds.hadley.nz/workflow-basics#exercises) {.unnumbered}
+
+1.
+> Why does this code not work?
+
+```{r}
+#| error: true
+
+my_variable <- 10
+my_varıable
+```
+
+The i is dotless in the call of my_variable and so doesn't match.
+
+:::{.callout-note collapse=false appearance='default' icon=true}
+## Quarto chunk `error: true`
+In Quarto this chunk ran using `error: true` which shows the error in the book, useful for instances where code errors are shared in Quarto presentations or on websites!
+
+:::
+
+2.
+> Tweak each of the following R commands so that they run correctly:
+
+```{r}
+#| eval: false
+
+libary(todyverse)
+
+ggplot(dTA = mpg) + 
+  geom_point(maping = aes(x = displ y = hwy)) +
+  geom_smooth(method = "lm)
+```
+
+Corrected:
+
+```{r}
+library(tidyverse)
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  geom_smooth(mapping = aes(x = displ, y = hwy),
+              method = lm)
+```
+
+There are a lot of corrections needed in this code.
+It includes:
+
+- `todyverse` should be `tidyverse`)
+- `dTA` instead of `data`)
+- `maping` instead of `mapping`
+- missing `,` between `x = displ` and `y = hwy`
+- a `"` before `"lm` 
+
+:::{.callout-note collapse=false appearance='default' icon=true}
+## Quotations around the lm in `method =` (note)
+`"lm"` will work but RStudio will flash up an error in the margin saying `unexpected token` if you click on the red circle with white cross.
+:::
+
+- `geom_smooth()` also requires its own mapping information as the `aes()` isn't available to that line. 
+If this were global it would be:
+
+```{r}
+library(tidyverse)
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point() +
+  geom_smooth(method = lm)
+```
+
+3.
+> Press Option + Shift + K / Alt + Shift + K.
+> What happens?
+
+The keyboard shortcuts overlay menu comes up in RStudio.
+
+> How can you get to the same place using the menus?
+
+Tools/Keyboards Shortcuts Help
+
+4.
+> Let's revisit an exercise from the https://r4ds.hadley.nz/data-visualize#sec-ggsave.
+> Run the following lines of code.
+
+```{r}
+#| eval: false
+#| code-line-numbers: true
+
+my_bar_plot <- ggplot(mpg, aes(x = class)) +
+ geom_bar()
+my_scatter_plot <- ggplot(mpg, aes(x = cty, y = hwy)) +
+ geom_point()
+ggsave(filename = "mpg-plot.png", plot = my_bar_plot)
+```
+
+> Which of the two plots is saved as `mpg-plot.png`?
+
+The bar plot from the object `my_bar_plot` is saved.
+
+> Why?
+
+This has been explicitly detailed in the `ggsave()` function.
+Both plots are also saved as objects (https://r4ds.hadley.nz/workflow-basics#sec-whats-in-a-name) so they can be referred to in the function.
