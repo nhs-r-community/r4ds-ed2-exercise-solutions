@@ -1,0 +1,155 @@
+# Data transformation
+
+## [4.2.5](https://r4ds.hadley.nz/data-transform#exercises) {.unnumbered}
+
+1.
+> In a single pipeline for each condition, find all flights that meet the condition:
+
+The following libraries will be needed:
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+
+```
+
+> Had an arrival delay of two or more hours
+
+The column `arr_delay` looks like the column to use but to confirm what type of data it contains we can see the package documentation with the following code:
+
+```{r}
+?flights
+```
+
+`arr_delay` is in minutes and the minus time shows when the departures were early so code would be:
+
+```{r}
+flights |> 
+  filter(arr_delay > 120)
+```
+
+> Flew to Houston (`IAH` or `HOU`)
+
+Looking at the column data with `unique()` which is a base R function to show the distinct values:
+
+```{r}
+unique(flights$dest)
+```
+
+Also possible in {dplyr} using `distinct()`:
+
+```{r}
+flights |> 
+  distinct(dest)
+```
+
+```{r}
+flights |> 
+  filter(dest %in% c("IAH", "HOU"))
+```
+
+Another way to do this, but less efficienct in code is to write:
+
+```{r}
+flights |> 
+  filter(dest == "IAH" | dest == "HOU")
+```
+
+with the `|` representing `or`.
+
+> Were operated by United, American, or Delta
+
+Checking the `carrier` column for information that matches:
+
+```{r}
+unique(flights$carrier)
+```
+
+These look like codes rather than names.
+
+Checking the package information online https://github.com/tidyverse/nycflights13 there is a dataset for `airlines`:
+
+```{r}
+??nycflights13::airlines
+```
+
+This section of the book doesn't refer to joins so presuming the exercise is requiring looking for the right codes:
+
+```{r}
+airlines |> 
+  filter(name %in% c("United", "American", "Delta"))
+```
+
+This doesn't bring back the right carriers but there are only 16 rows and the names should be:
+
+```{r}
+airlines |> 
+  filter(name %in% c("United Air Lines Inc.", "American Airlines Inc.", "Delta Air Lines Inc."))
+```
+
+```{r}
+
+flights |> 
+  filter(carrier %in% c("AA", "DL", "UA"))
+```
+
+> Departed in summer (July, August, and September)
+
+```{r}
+flights |> 
+  filter(month %in% c(7, 8, 9))
+```
+
+Because these are numbers the filter can be reduced to:
+
+```{r}
+flights |> 
+  filter(month %in% 7:9)
+
+```
+
+> Arrived more than two hours late, but didn't leave late
+
+```{r}
+flights |> 
+  filter(dep_delay <= 0,
+         arr_delay > 120)
+```
+
+> Were delayed by at least an hour, but made up over 30 minutes in flight
+
+```{r}
+flights |> 
+  filter(dep_delay >= 60,
+         arr_delay < dep_delay - 30)
+```
+
+*At least an hour* means 60 minutes or more so `>=`.
+
+2.
+> Sort `flights` to find the flights with longest departure delays.
+Find the flights that left earliest in the morning.
+
+Rather than `,` between the two parts this answer will require the `&`
+
+```{r}
+flights |> 
+  filter(dep_time < 0900) |> 
+  arrange(desc(dep_delay))
+```
+
+3.
+>Sort `flights` to find the fastest flights.
+(Hint: Try including a math calculation inside of your function.)
+
+4.
+> Was there a flight on every day of 2013?
+
+5.
+> Which flights traveled the farthest distance?
+> Which traveled the least distance?
+
+6.
+>Does it matter what order you used `filter()` and `arrange()` if you're using both?
+    Why/why not?
+    Think about the results and how much work the functions would have to do.
