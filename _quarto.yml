@@ -10,6 +10,7 @@ book:
     - intro.qmd
     - data-visualize.qmd
     - workflow.qmd
+    - data-transform.qmd
     - references.qmd
   page-footer:
     left: |
